@@ -1,0 +1,7 @@
+# Brainfuck Compiler
+This is a sample brainfuck compiler, written in ruby for #WhyDay
+
+#Thanks
+Thanks to http://www.stephensykes.com/bf.html, for sharing the idea
+
+2010 - Thiago Pradi
