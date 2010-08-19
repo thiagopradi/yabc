@@ -2,60 +2,62 @@ class Brainfuck
   def initialize()
     @memory = [0] * 5000
     @position = 0
-    @b=[]
-    @x = 0
+    @loop_array = []
+    @loop_position = 0
+    @test = []
   end
 
   def right()
-    @position += 1 if !@run
+    @position += 1 if !@not_run
   end
 
   def left()
-    @position -= 1 if !@run
+    @position -= 1 if !@not_run
   end
 
   def inc
-    @memory[@position] += 1 if !@run
+    @memory[@position] += 1 if !@not_run
   end
 
   def dec
-    @memory[@position] -= 1 if !@run
+    @memory[@position] -= 1 if !@not_run
   end
 
   def print
-    puts(@memory[@position].chr) if !@run
+    @test << @memory[@position].chr
+    puts(@memory[@position].chr) if !@not_run
   end
 
   def input
-    @memory[@position] = $stdin.getc if !@run
+    @memory[@position] = $stdin.getc if !@not_run
   end
 
   def start_loop
-    @x+=1
+    @loop_position += 1
 
     if @memory[@position] == 0
-      @run = true
+      @not_run = true
     else
-      @b[@x] = $i-1
+      @loop_array[@loop_position] = $intr_position - 1
     end
   end
 
   def end_loop
-    if @run
-      @run = false
+    if @not_run
+      @not_run = false
     else
-      $i=@b[@x]
+      $intr_position = @loop_array[@loop_position]
     end
 
-    @x-=1
+    @loop_position -= 1
   end
 
   def self.eval(string)
     @b = Brainfuck.new()
-    $i = 0
+    $intr_position = 0
 
-    while $i < string.length()
-      str = string[$i].chr
+    while $intr_position < string.length()
+      str = string[$intr_position].chr
 
       case str
       when '<' then @b.right()
@@ -69,7 +71,9 @@ class Brainfuck
       else raise "Invalid character! #{str}"
       end
       
-      $i += 1      
+      $intr_position += 1      
     end
+    
+    return @b
   end
 end
